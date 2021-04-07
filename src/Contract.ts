@@ -33,6 +33,7 @@ export interface IContractInfo {
   binhash: string
   createdAt: string // date string
   confirmed: boolean
+  networks: { [prop: string]: any }
 }
 
 export interface IContractCallDecodedResult extends IRPCCallContractResult {
@@ -88,7 +89,17 @@ export class Contract {
       this.callMethodsMap[name] = methodABI
     }
 
-    this.address = info.address
+    // modified for reg test network
+    this.address = info.networks["4132"].address;
+    this.address = this.address.slice(2, this.address.length)
+    
+    console.log('contract address for regtest only: ', this.address)
+    console.log('contract loaded');
+  }
+
+  public updateAddress(contractAddress: string){
+    this.address = contractAddress;
+    console.log('contract address for regtest only: ', this.address)
   }
 
   public encodeParams(method: string, args: any[] = []): string {

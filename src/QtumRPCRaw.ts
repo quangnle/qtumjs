@@ -3,7 +3,7 @@
 // import btoa from "btoa"
 // import URL from "url-parse"
 const fetch = require("isomorphic-fetch")
-// const btoa = require("btoa")
+const btoa = require("btoa")
 const URL = require("url-parse")
 
 import { sleep } from "./sleep"
